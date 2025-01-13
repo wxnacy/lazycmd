@@ -1,0 +1,11 @@
+[package]
+name = "lazycmd"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["wxnacy@gmail.com"]
+description = "Quck run command"
+repository = "https://github.com/wxnacy/lazycmd"
+
+[dependencies]
+anyhow = "1.0.95"
