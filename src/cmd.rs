@@ -48,7 +48,7 @@ where
 ///
 /// spawn(["ls", "-l"]).unwrap();
 /// ```
-pub fn spawn<I, S>(args: I) -> Result<()>
+pub fn spawn<I, S>(args: I) -> Result<Vec<String>>
 where
     I: IntoIterator<Item = S>,
     S: AsRef<OsStr>,
@@ -66,13 +66,15 @@ where
     let reader = io::BufReader::new(stdout);
 
     // 逐行读取输出并打印
+    let mut result = Vec::new();
     for line in reader.lines() {
         let line = line?;
         println!("{}", line);
+        result.push(line);
     }
 
     // 等待命令完成
     let _ = child.wait()?;
-    Ok(())
+    Ok(result)
 }
 
